@@ -10,7 +10,7 @@ SOARZ Automation specializes in custom business process automation, helping smal
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
 - **Styling**: Custom CSS with modern design patterns
-- **Hosting**: [Your hosting platform]
+- **Hosting**: GitHub Pages with Cloudflare DNS
 - **Assets**: Optimized images and SVG icons
 
 ## 📁 Project Structure
