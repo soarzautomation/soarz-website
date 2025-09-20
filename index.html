@@ -5,29 +5,238 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOARZ Automation</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; }
-        .container { max-width: 960px; margin: 0 auto; padding: 20px; }
-        .header { background-color: #0A3D62; color: #fff; text-align: center; padding: 2rem 1rem; }
-        .header .logo { max-height: 280px; margin-bottom: 1rem; }
-        .header h1 { margin: 0; font-size: 3rem; }
-        .header p { color: #f1f1f1; font-size: 1.2rem; }
-        .section { padding: 40px 0; border-bottom: 1px solid #eee; }
-        h2 { text-align: center; margin-bottom: 40px; }
-        .services-grid, .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service, .project { padding: 20px; border: 1px solid #ddd; border-radius: 5px; text-align: center; }
-        .project img { max-width: 100%; height: auto; border-radius: 5px; margin-bottom: 15px; }
-        .about { display: flex; align-items: center; gap: 30px; }
-        .about img { max-width: 250px; border-radius: 50%; }
-        .footer { text-align: center; padding: 20px; background-color: #f8f8f8; }
-        a { color: #D98324; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            color: #333; 
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        
+        .header { 
+            background: linear-gradient(135deg, #0A3D62 0%, #1e5799 100%); 
+            color: #fff; 
+            text-align: center; 
+            padding: 3rem 1rem; 
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="grain" width="100" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="white" opacity="0.05"/><circle cx="30" cy="5" r="1" fill="white" opacity="0.03"/><circle cx="70" cy="15" r="1.2" fill="white" opacity="0.04"/></pattern></defs><rect width="100" height="20" fill="url(%23grain)"/></svg>') repeat;
+        }
+        .header-content { position: relative; z-index: 1; }
+        .header .logo { 
+            max-height: 200px; 
+            width: auto;
+            margin: 0 auto 1rem; 
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .header h1 { margin: 0; font-size: 3.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .header .tagline { color: #f1f1f1; font-size: 1.3rem; margin-top: 0.5rem; font-weight: 300; }
+        
+        .section { padding: 60px 0; }
+        .section:nth-child(even) { background: #f8f9fa; }
+        
+        h2 { 
+            text-align: center; 
+            margin-bottom: 50px; 
+            font-size: 2.5rem; 
+            color: #0A3D62;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #D98324;
+            margin: 20px auto;
+        }
+        
+        .services-grid, .portfolio-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
+        }
+        
+        .service, .project { 
+            padding: 30px; 
+            background: white;
+            border: none;
+            border-radius: 12px; 
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service:hover, .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service h3, .project h3 { 
+            color: #0A3D62; 
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #D98324, #f39c12);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .project-image-placeholder { 
+            width: 100%; 
+            height: 200px; 
+            background: #e9ecef; 
+            border: 2px dashed #adb5bd;
+            border-radius: 8px; 
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .testimonial {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .testimonial blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 0 0 20px 0;
+            color: #0A3D62;
+        }
+        .testimonial cite {
+            font-weight: 600;
+            color: #D98324;
+        }
+        
+        .about { 
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px; 
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .about img { 
+            max-width: 200px; 
+            max-height: 200px;
+            border-radius: 50%; 
+            object-fit: cover;
+        }
+        
+        .contact {
+            background: linear-gradient(135deg, #0A3D62, #1e5799);
+            color: white;
+            text-align: center;
+        }
+        .contact h2 { color: white; }
+        .contact h2::after { background: #D98324; }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .contact-item {
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .contact-item h3 {
+            margin-top: 0;
+            color: #D98324;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #D98324;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+        .cta-button:hover {
+            background: #c77011;
+            color: white;
+        }
+        
+        .footer { 
+            text-align: center; 
+            padding: 30px; 
+            background-color: #2c3e50;
+            color: white;
+        }
+        .footer a { color: #D98324; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        
+        .tech-stack {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .tech-stack h4 {
+            color: #0A3D62;
+            margin-bottom: 15px;
+        }
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tech-badge {
+            background: #0A3D62;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .about { grid-template-columns: 1fr; text-align: center; }
+            .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
+            .contact-info { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <img src="assets/soarz-logo.png" alt="SOARZ Automation Logo" class="logo">
-        <h1>SOARZ Automation</h1>
-        <p>Automation solutions that help your business soar</p>
+        <div class="header-content">
+            <img src="assets/soarz-logo.png" alt="SOARZ Automation Logo" class="logo">
+            <h1>SOARZ Automation</h1>
+            <p class="tagline">Automation solutions that help your business soar</p>
+        </div>
     </header>
 
     <div class="container">
@@ -35,16 +244,25 @@
             <h2>Our Services</h2>
             <div class="services-grid">
                 <div class="service">
+                    <div class="service-icon">⚡</div>
                     <h3>Quick Win Automations</h3>
                     <p>Entry-level, fixed-scope projects designed to solve one specific problem and deliver immediate value. Perfect for tasks like automated report generation from Excel/CSV, web scraping for data collection, or automated file organization.</p>
+                    <p><strong>Starting at $500</strong></p>
+                    <p><em>Typical ROI: 10-20 hours saved monthly</em></p>
                 </div>
                 <div class="service">
+                    <div class="service-icon">🔗</div>
                     <h3>Core Workflow Integration</h3>
                     <p>My core service is connecting multiple applications you already use (like your CRM, email, and cloud storage) to automate an entire business process from start to finish, saving time and eliminating errors.</p>
+                    <p><strong>Custom pricing</strong></p>
+                    <p><em>Typical ROI: 30-50 hours saved monthly</em></p>
                 </div>
                 <div class="service">
+                    <div class="service-icon">📊</div>
                     <h3>The Automation Audit</h3>
                     <p>A paid consulting service where I analyze your business operations to identify the top automation opportunities and deliver a strategic "Automation Roadmap" for you to follow.</p>
+                    <p><strong>$1,200 for comprehensive audit</strong></p>
+                    <p><em>Typical outcome: 3-5 automation opportunities identified</em></p>
                 </div>
             </div>
         </section>
@@ -53,16 +271,34 @@
             <h2>Portfolio</h2>
             <div class="portfolio-grid">
                 <div class="project">
-                    <img src="assets/report-generator-screenshot.png" alt="Screenshot of an automated PDF report">
+                    <img src="assets/report-generator-screenshot.png" alt="Screenshot of an automated PDF report" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <h3>Automated PDF Report Generator</h3>
-                    <p>A Python tool that transforms raw business data into a professional, formatted report with charts and tables, saving hours of manual work.</p> 
-                    <p><a href="https://github.com/soarzautomation/Automated-Report-Generator.git" target="_blank">View on GitHub</a></p>
+                    <p>A Python tool that transforms raw business data into a professional, formatted report with charts and tables.</p>
+                    <div class="tech-stack">
+                        <h4>Tech Stack:</h4>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Pandas</span>
+                            <span class="tech-badge">Matplotlib</span>
+                            <span class="tech-badge">ReportLab</span>
+                        </div>
+                    </div>
+                    <p><a href="https://github.com/soarzautomation/Automated-Report-Generator.git" target="_blank" class="cta-button">View on GitHub</a></p>
                 </div>
                 <div class="project">
-                    <img src="assets/lead-scraper-screenshot.jpg" alt="Screenshot of a CSV file with scraped leads">
+                    <img src="assets/lead-scraper-screenshot.jpg" alt="Screenshot of a CSV file with scraped leads" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <h3>Automated Lead Generation Scraper</h3>
-                    <p>A custom script that automatically visits online directories to collect business contact information, building a clean, ready-to-use lead list in a fraction of the time of manual research.</p>
-                    <p><a href="https://github.com/soarzautomation/Lead-Generation-Scraper.git" target="_blank">View on GitHub</a></p>
+                    <p>A custom script that automatically visits online directories to collect business contact information, building a clean, ready-to-use lead list.</p>
+                    <div class="tech-stack">
+                        <h4>Tech Stack:</h4>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Selenium</span>
+                            <span class="tech-badge">BeautifulSoup</span>
+                            <span class="tech-badge">Pandas</span>
+                        </div>
+                    </div>
+                    <p><a href="https://github.com/soarzautomation/Lead-Generation-Scraper.git" target="_blank" class="cta-button">View on GitHub</a></p>
                 </div>
             </div>
         </section>
@@ -70,20 +306,46 @@
         <section class="section">
             <h2>About Me</h2>
             <div class="about">
-                <img src="assets/ryan-headshot.jpg" alt="A headshot of Ryan Hendrix">
+                <img src="assets/ryan-headshot.jpg" alt="Ryan Hendrix headshot">
                 <div>
-                    <p>My name is Ryan Hendrix, founder of SOARZ Automation. As a U.S. Army veteran with a Master's in Electrical Engineering, I bring a mission-driven approach to solving complex problems. Here in Dayton, Ohio, the birthplace of aviation, I'm passionate about helping businesses take flight by building the custom automation solutions they need to become more efficient and soar above the competition. With over a decade of experience, I personally handle every project to ensure you receive a robust, practical solution tailored to your specific goals.</p>
+                    <p>My name is Ryan Hendrix, founder of SOARZ Automation. As a U.S. Army veteran with a Master's in Electrical Engineering, I bring a mission-driven approach to solving complex problems.</p>
+                    <p>Here in Dayton, Ohio, the birthplace of aviation, I'm passionate about helping businesses take flight by building the custom automation solutions they need to become more efficient and soar above the competition.</p>
+                    <p>With over a decade of experience in systems engineering and automation, I personally handle every project to ensure you receive a robust, practical solution tailored to your specific goals.</p>
                 </div>
             </div>
         </section>
     </div>
 
+    <section class="contact section">
+        <div class="container">
+            <h2>Ready to Automate?</h2>
+            <p>Let's discuss how automation can transform your business operations</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>ryan@soarzautomation.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📍 Location</h3>
+                    <p>Dayton, OH<br>(Remote work available)</p>
+                </div>
+                <div class="contact-item">
+                    <h3>⚡ Response Time</h3>
+                    <p>Within 24 hours<br>Free consultation</p>
+                </div>
+            </div>
+            
+            <a href="mailto:ryan@soarzautomation.com?subject=Automation Consultation Request" class="cta-button">Start Your Project</a>
+        </div>
+    </section>
+
     <footer class="footer">
-        <p>ryan@soarzautomation.com | Dayton, OH</p>
         <p>
             <a href="https://github.com/soarzautomation" target="_blank">GitHub Profile</a> | 
             <a href="https://www.upwork.com/freelancers/soarzautomation?mp_source=share" target="_blank">Upwork Profile</a>
         </p>
+        <p>&copy; 2025 SOARZ Automation. Built to help your business soar.</p>
     </footer>
 
 </body>
