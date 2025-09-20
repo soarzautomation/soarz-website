@@ -36,7 +36,6 @@
             width: auto;
             margin: 0 auto 1rem; 
             display: block;
-            border-radius: 10px;
         }
         .header h1 { margin: 0; font-size: 3.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
         .header .tagline { color: #f1f1f1; font-size: 1.3rem; margin-top: 0.5rem; font-weight: 300; }
@@ -251,6 +250,37 @@
             .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
             .contact-info { grid-template-columns: 1fr; }
         }
+        
+        /* Blog Styles */
+        .blog-preview {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        .blog-preview h3 {
+            color: #0A3D62;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .blog-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .blog-excerpt {
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .read-more {
+            color: #D98324;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .read-more:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -288,6 +318,20 @@
                     <p><strong>$1,200 for comprehensive audit</strong></p>
                     <p><em>Typical outcome: 3-5 automation opportunities identified</em></p>
                 </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Latest Insights</h2>
+            <div class="blog-preview">
+                <h3>The Hidden Cost of 'Just 5 More Minutes'</h3>
+                <div class="blog-meta">Published on Medium • 5 min read</div>
+                <div class="blog-excerpt">
+                    <p>"It's just copying data from one spreadsheet to another. Just 5 minutes, right?" Sound familiar? But if you're doing that task twice a week, that's over 8.5 hours you've spent by the end of the year. And that's just one task.</p>
+                    <p>As a small business owner, you think of automation as a tool for solving the "big" problems. But the real productivity killer isn't one giant monster — it's a swarm of tiny ones. The daily onslaught of "quick tasks" that you barely notice.</p>
+                    <p><strong>The math:</strong> Ten "5-minute" tasks done twice weekly cost you over $2,000 per year in lost productivity. That's before counting the hidden cost of context switching...</p>
+                </div>
+                <a href="https://medium.com/@soarzautomation/the-hidden-cost-of-just-5-more-minutes-8c60d1c001c1" target="_blank" class="read-more">Read the full article →</a>
             </div>
         </section>
 
